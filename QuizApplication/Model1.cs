@@ -1,6 +1,7 @@
 namespace QuizApplication
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Linq;
 
@@ -15,18 +16,31 @@ namespace QuizApplication
         public Model1()
             : base("name=Model1")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Model1, QuizApplication.Migrations.Configuration>());
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-         public virtual DbSet<MyEntity> MyEntities { get; set; }
+        public virtual DbSet<Question> Questions { get; set; }
+         public virtual DbSet<HistoryEntry> Entries { get; set; }
     }
 
-    public class MyEntity
+    public class Question
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Test { get; set; }
+        public int ID { get; set; }
+        public string Body { get; set; }
+        public bool Answer { get; set; }
     }
+
+   
+    public class HistoryEntry
+    {
+        public int ID { get; set; }
+        public DateTime Ended { get; set; }
+        public string UserId { get; set; }
+        public int Score { get; set; }
+        public float Time { get; set; }
+    }
+
 }
