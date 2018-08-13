@@ -1,4 +1,10 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="QuizApplication._Default" %>
+<%@ Register  TagPrefix="uc" TagName="QuestionControl"  Src="~/QuestionControl.ascx"%>
+<script runat="server">
+
+
+
+</script>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -32,11 +38,23 @@
             <h2>Web Hosting</h2>
             <p>
                 You can easily find a web hosting company that offers the right mix of features and price for your applications.
+                <asp:Timer ID="Timer1" runat="server" Interval="1000" OnTick="Timer1_Tick">
+                </asp:Timer>
             </p>
             <p>
                 <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
             </p>
         </div>
     </div>
-
+     <asp:UpdatePanel ID="updPnl" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <asp:Label ID="time" runat="server"></asp:Label>
+        
+        </ContentTemplate>
+             <Triggers>
+        <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+    </Triggers> 
+    </asp:UpdatePanel>
+    <uc:QuestionControl id="question" runat="server"></uc:QuestionControl>
+   
 </asp:Content>

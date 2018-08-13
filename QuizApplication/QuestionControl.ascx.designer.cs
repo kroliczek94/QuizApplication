@@ -10,16 +10,7 @@
 namespace QuizApplication {
     
     
-    public partial class _Default {
-        
-        /// <summary>
-        /// Timer1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.Timer Timer1;
+    public partial class QuestionControl {
         
         /// <summary>
         /// updPnl control.
@@ -31,21 +22,30 @@ namespace QuizApplication {
         protected global::System.Web.UI.UpdatePanel updPnl;
         
         /// <summary>
-        /// time control.
+        /// content control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label time;
+        protected global::System.Web.UI.WebControls.Label content;
         
         /// <summary>
-        /// question control.
+        /// YesButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::QuizApplication.QuestionControl question;
+        protected global::System.Web.UI.WebControls.Button YesButton;
+        
+        /// <summary>
+        /// NoButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NoButton;
     }
 }
