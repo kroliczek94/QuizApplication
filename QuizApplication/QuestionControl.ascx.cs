@@ -9,13 +9,41 @@ namespace QuizApplication
 {
     public partial class QuestionControl : System.Web.UI.UserControl
     {
+        List<Question> questions = new List<Question>();
         public QuestionControl()
         {
 
+
+
+
+            using (var db = new Model1())
+            {
+                // Display all Blogs from the database 
+                var query = from b in db.Questions
+                            orderby b.ID
+                            select b;
+                questions = query.ToList();
+            }
+
         }
         private bool? _answer = null;
-        private bool _fail = false;
-        public string QuestionBody
+
+        public int QuestionLimit { get; private set; } = 5;
+
+        public int QuestionNo
+        {
+            get
+            {
+                var value = ViewState["questionNo"];
+                return null != value ? (int)value : 0;
+            }
+            set
+            {
+                ViewState["questionNo"] = value;
+            }
+        }
+
+        public string Body
         {
             set
             {
@@ -23,7 +51,7 @@ namespace QuizApplication
             }
         }
 
-        public bool QuestionAnswer
+        public bool Answer
         {
             set
             {
@@ -31,42 +59,44 @@ namespace QuizApplication
             }
         }
 
-        public bool Failed
-        {
-            get
-            {
-                return _fail;
-            }
-            set
-            {
-                _fail = value;
-            }
+        public event EventHandler QuizFailedEvent;
+        public event EventHandler FinalQuestionEvent;
 
+        private void OnFail()
+        {
+            QuizFailedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        public event EventHandler StatusUpdated;
-
-        private void OnUserControlButtonClick()
+        private void OnFinalQuestion()
         {
-            if (StatusUpdated != null)
-            {
-                StatusUpdated(this, EventArgs.Empty);
-            }
+            FinalQuestionEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
+        private void OnUserNextQuestion()
+        {   
+            if (QuestionNo < QuestionLimit - 1)
+            {
+                QuestionNo++;
+                Body = questions[QuestionNo].Body;
+                Answer = questions[QuestionNo].Answer;
+            }
+            else
+            {
+                FinalQuestionEvent.Invoke(this, EventArgs.Empty);
+            }
         }
 
         protected void YesButton_Click(object sender, EventArgs e)
         {
             if (_answer.HasValue)
             {
-                if (_answer.Value)
+                if (!_answer.Value)
                 {
-                    _fail = true;
-                    OnUserControlButtonClick();
+                    OnFail();
+                }
+                else
+                {
+                    OnUserNextQuestion();
                 }
             }
         }
@@ -75,13 +105,31 @@ namespace QuizApplication
         {
             if (_answer.HasValue)
             {
-                if (!_answer.Value)
+                if (_answer.Value)
                 {
-                    _fail = true;
-                    if (this.StatusUpdated != null)
-                        this.StatusUpdated(this, new EventArgs());
+                    OnFail();
+                }
+                else
+                {
+                    OnUserNextQuestion();
                 }
             }
         }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                ViewState["questionNo"] = 0;
+            }
+            else
+            {
+                Body = questions[QuestionNo].Body;
+                Answer = questions[QuestionNo].Answer;
+            }
+        }
+
+
+
     }
 }

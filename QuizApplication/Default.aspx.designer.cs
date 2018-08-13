@@ -13,31 +13,49 @@ namespace QuizApplication {
     public partial class _Default {
         
         /// <summary>
-        /// Timer1 control.
+        /// Wizard1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.Timer Timer1;
+        protected global::System.Web.UI.WebControls.Wizard Wizard1;
         
         /// <summary>
-        /// updPnl control.
+        /// WizardStep1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updPnl;
+        protected global::System.Web.UI.WebControls.WizardStep WizardStep1;
         
         /// <summary>
-        /// time control.
+        /// StartQuizButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label time;
+        protected global::System.Web.UI.WebControls.Button StartQuizButton;
+        
+        /// <summary>
+        /// WizardStep2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.WizardStep WizardStep2;
+        
+        /// <summary>
+        /// timerASP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::QuizApplication.TimerASP timerASP;
         
         /// <summary>
         /// question control.
@@ -47,5 +65,32 @@ namespace QuizApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::QuizApplication.QuestionControl question;
+        
+        /// <summary>
+        /// Abort control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Abort;
+        
+        /// <summary>
+        /// WizardStep3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.WizardStep WizardStep3;
+        
+        /// <summary>
+        /// WizardStep4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.WizardStep WizardStep4;
     }
 }
