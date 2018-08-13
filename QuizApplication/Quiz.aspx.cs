@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace QuizApplication
 {
-    public partial class _Default : Page
+    public partial class Quiz : System.Web.UI.Page
     {
 
         private void MyEventHandlerFunction_QuizFailed(object sender, EventArgs e)
@@ -25,6 +25,8 @@ namespace QuizApplication
         {
             this.question.QuizFailedEvent += new EventHandler(MyEventHandlerFunction_QuizFailed);
             this.question.FinalQuestionEvent += new EventHandler(MyEventHandlerFunction_FinalQuestion);
+
+
         }
 
         private void MyEventHandlerFunction_FinalQuestion(object sender, EventArgs e)

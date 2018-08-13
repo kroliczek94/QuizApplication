@@ -12,19 +12,13 @@ namespace QuizApplication
         List<Question> questions = new List<Question>();
         public QuestionControl()
         {
-
-
-
-
             using (var db = new Model1())
             {
-                // Display all Blogs from the database 
                 var query = from b in db.Questions
                             orderby b.ID
                             select b;
                 questions = query.ToList();
             }
-
         }
         private bool? _answer = null;
 

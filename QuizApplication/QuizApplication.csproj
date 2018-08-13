@@ -223,6 +223,7 @@
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="QuestionControl.ascx" />
+    <Content Include="Quiz.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -254,7 +255,9 @@
     <Content Include="Site.Master" />
     <Content Include="TimerASP.ascx" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
@@ -420,6 +423,13 @@
       <DependentUpon>QuestionControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="QuestionsInitializer.cs" />
+    <Compile Include="Quiz.aspx.cs">
+      <DependentUpon>Quiz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quiz.aspx.designer.cs">
+      <DependentUpon>Quiz.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

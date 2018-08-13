@@ -1,11 +1,10 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="QuizApplication._Default" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Quiz.aspx.cs"  Inherits="QuizApplication.Quiz" %>
+
 <%@ Register TagPrefix="uc2" TagName="TimerASP" Src="~/TimerASP.ascx" %>
 <%@ Register TagPrefix="uc" TagName="QuestionControl" Src="~/QuestionControl.ascx" %>
 
-
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <asp:Wizard ID="Wizard1" runat="server" DisplaySideBar="false">
+              <asp:Wizard ID="Wizard1" runat="server" DisplaySideBar="false">
         <WizardSteps>
             <asp:WizardStep ID="WizardStep1" runat="server" Title="Step 1">
                 <div class="content">
@@ -35,7 +34,5 @@
         <FinishNavigationTemplate>
         </FinishNavigationTemplate>
     </asp:Wizard>
-   
-
-
 </asp:Content>
+
