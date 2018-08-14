@@ -16,6 +16,9 @@ namespace QuizApplication
         public QuestionControl()
         {
             questions= QuestionDAO.GetQuestions();
+            var value = ViewState["usedQuestions"];
+           
+
         }
         private bool? _answer = null;
 
@@ -34,12 +37,44 @@ namespace QuizApplication
             }
         }
 
+        public int CurrentQuestionId
+        {
+            get
+            {
+                var value = ViewState["CurrentQuestionId"];
+                return null != value ? (int)value : 0;
+            }
+            set
+            {
+                ViewState["CurrentQuestionId"] = value;
+            }
+        }
+
+
         public string Body
         {
             set
             {
                 content.Text = value;
             }
+        }
+
+        public string UsedQuestionsStr
+        {
+            get
+            {
+                var value = ViewState["usedQuestions"];
+                return null != value ? (string)value : string.Empty;
+            }
+            set
+            {
+                ViewState["usedQuestions"] = value;
+            }
+        } 
+
+        public int Duration
+        {
+            get { return timerASP.Seconds; }
         }
 
         public bool Answer
@@ -52,11 +87,18 @@ namespace QuizApplication
 
         public event EventHandler QuizFailedEvent;
         public event EventHandler FinalQuestionEvent;
+        public event EventHandler AbortQuestion;
 
         private void OnFail()
         {
             timerASP.Stop();
             QuizFailedEvent?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnAbortClick()
+        {
+            timerASP.Stop();
+            AbortQuestion?.Invoke(this, EventArgs.Empty);
         }
 
         private void AfterFinalQuestion()
@@ -78,18 +120,28 @@ namespace QuizApplication
         }
 
         private void OnUserNextQuestion()
-        {   
+        {
+            UsedQuestionsStr += CurrentQuestionId.ToString() + ";";
+           
             if (QuestionNo < QuestionLimit - 1)
             {
+                CurrentQuestionId = GetNextQuestionId();
+                FillBodyAndAnswer();
                 QuestionNo++;
-                Body = questions[QuestionNo].Body;
-                Answer = questions[QuestionNo].Answer;
             }
             else
             {
                 AfterFinalQuestion();
             }
         }
+
+        private void FillBodyAndAnswer()
+        {
+            var curQuestion = questions.Where(x => x.ID == CurrentQuestionId).First();
+            Body = curQuestion.Body;
+            Answer = curQuestion.Answer;
+        }
+
 
         protected void YesButton_Click(object sender, EventArgs e)
         {
@@ -121,22 +173,37 @@ namespace QuizApplication
             }
         }
 
+        protected void Abort_Click(object sender, EventArgs e)
+        {
+            OnAbortClick();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 ViewState["questionNo"] = 0;
             }
-            Body = questions[QuestionNo].Body;
-            Answer = questions[QuestionNo].Answer;
+            if (CurrentQuestionId != 0)
+                FillBodyAndAnswer();
         }
 
         public void Start()
         {
             timerASP.Start();
-            Body = questions[QuestionNo].Body;
-            Answer = questions[QuestionNo].Answer;
+            QuestionNo = 0;
+            UsedQuestionsStr = "";
+            CurrentQuestionId = GetNextQuestionId();
+            FillBodyAndAnswer();
         }
 
+        private int GetNextQuestionId()
+        {
+            var UsedQuestions = UsedQuestionsStr.Split(new string[] { ";" }, StringSplitOptions.None).ToList();
+            var TempQuestions = questions;
+            TempQuestions.RemoveAll(x => UsedQuestions.Contains(x.ID.ToString()));
+            return TempQuestions.OrderBy(a => Guid.NewGuid()).First().ID;
+            
+        }
     }
 }

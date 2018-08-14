@@ -58,15 +58,6 @@ namespace QuizApplication {
         protected global::QuizApplication.QuestionControl question;
         
         /// <summary>
-        /// Abort control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Abort;
-        
-        /// <summary>
         /// WizardStep3 control.
         /// </summary>
         /// <remarks>
@@ -74,6 +65,15 @@ namespace QuizApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.WizardStep WizardStep3;
+        
+        /// <summary>
+        /// ResultLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ResultLabel;
         
         /// <summary>
         /// Entries control.

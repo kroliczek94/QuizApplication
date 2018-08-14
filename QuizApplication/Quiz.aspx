@@ -20,19 +20,22 @@
                 <asp:WizardStep ID="WizardStep2" runat="server" Title="Step 2">
                     <div class="content">
                         <uc:QuestionControl ID="question" runat="server"></uc:QuestionControl>
-                        <asp:Button ID="Abort" runat="server" OnClick="Abort_Click" Text="Przerwij" />
+                       
                     </div>
                 </asp:WizardStep>
                 <asp:WizardStep ID="WizardStep3" runat="server" Title="Step 3">
-                    <div class="content">
+                    <div class="content">Twój wynik
+                        <asp:Label ID="ResultLabel" runat="server" CssClass="badge"></asp:Label> sekund
                         <uc2:EntryList ID="Entries" runat="server" />
+                         <asp:Button runat="server" OnClick="RestartButton_Click" Text="Spróbuj ponownie" CssClass="btn btn-primary"/>
+       
                     </div>
                 </asp:WizardStep>
 
                 <asp:WizardStep ID="WizardStep4" runat="server" Title="Step 3">
                     <div class="content">
                        <h3> <span class="label label-danger">Niestety, odpowiedź nieprawidłowa, spróbuj jeszcze raz</span></h3>
-                        <asp:Button Id="RestartButton" runat="server" OnClick="RestartButton_Click" Text="Spróbuj ponownie"/>
+                        <asp:Button Id="RestartButton" runat="server" OnClick="RestartButton_Click" Text="Spróbuj ponownie" CssClass="btn btn-primary"/>
                     </div>
                 </asp:WizardStep>
 

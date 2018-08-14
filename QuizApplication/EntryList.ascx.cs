@@ -20,13 +20,17 @@ namespace QuizApplication
             var newQueryResult = QuestionDAO.GetHistoryEntries(10).Select(t => new
             {
                 Data = t.Ended.ToShortDateString(),
-                Wynik = t.Score,
                 Czas = t.Time,
                 Użytkownik = t.UserId
             });
 
             GridView1.DataSource = newQueryResult;
             GridView1.DataBind();
+
         }
+
+    
+
+
     }
 }
