@@ -25,6 +25,7 @@ namespace QuizApplication
             set
             {
                 ViewState["seconds"] = value;
+                time.Text = "0";
             }
         }
         public bool Started

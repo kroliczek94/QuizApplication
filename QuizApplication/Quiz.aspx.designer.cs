@@ -49,15 +49,6 @@ namespace QuizApplication {
         protected global::System.Web.UI.WebControls.WizardStep WizardStep2;
         
         /// <summary>
-        /// timerASP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::QuizApplication.TimerASP timerASP;
-        
-        /// <summary>
         /// question control.
         /// </summary>
         /// <remarks>
@@ -85,6 +76,15 @@ namespace QuizApplication {
         protected global::System.Web.UI.WebControls.WizardStep WizardStep3;
         
         /// <summary>
+        /// Entries control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::QuizApplication.EntryList Entries;
+        
+        /// <summary>
         /// WizardStep4 control.
         /// </summary>
         /// <remarks>
@@ -92,5 +92,14 @@ namespace QuizApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.WizardStep WizardStep4;
+        
+        /// <summary>
+        /// RestartButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button RestartButton;
     }
 }

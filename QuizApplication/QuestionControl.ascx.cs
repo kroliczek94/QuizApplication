@@ -1,7 +1,10 @@
-﻿using System;
+﻿using QuizApplication.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Providers.Entities;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -12,13 +15,7 @@ namespace QuizApplication
         List<Question> questions = new List<Question>();
         public QuestionControl()
         {
-            using (var db = new Model1())
-            {
-                var query = from b in db.Questions
-                            orderby b.ID
-                            select b;
-                questions = query.ToList();
-            }
+            questions= QuestionDAO.GetQuestions();
         }
         private bool? _answer = null;
 
@@ -58,12 +55,26 @@ namespace QuizApplication
 
         private void OnFail()
         {
+            timerASP.Stop();
             QuizFailedEvent?.Invoke(this, EventArgs.Empty);
         }
 
-        private void OnFinalQuestion()
+        private void AfterFinalQuestion()
         {
-            FinalQuestionEvent?.Invoke(this, EventArgs.Empty);
+            timerASP.Stop();
+            using (var db = new Model1())
+            {
+                var histEntry = new HistoryEntry()
+                {
+                    UserId = Environment.UserName,
+                    Score = 5,
+                    Time = timerASP.Seconds,
+                    Ended= DateTime.Now
+                };
+                db.Entries.Add(histEntry);
+                db.SaveChanges();
+            }
+             FinalQuestionEvent?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnUserNextQuestion()
@@ -76,7 +87,7 @@ namespace QuizApplication
             }
             else
             {
-                FinalQuestionEvent.Invoke(this, EventArgs.Empty);
+                AfterFinalQuestion();
             }
         }
 
@@ -116,14 +127,16 @@ namespace QuizApplication
             {
                 ViewState["questionNo"] = 0;
             }
-            else
-            {
-                Body = questions[QuestionNo].Body;
-                Answer = questions[QuestionNo].Answer;
-            }
+            Body = questions[QuestionNo].Body;
+            Answer = questions[QuestionNo].Answer;
         }
 
-
+        public void Start()
+        {
+            timerASP.Start();
+            Body = questions[QuestionNo].Body;
+            Answer = questions[QuestionNo].Answer;
+        }
 
     }
 }

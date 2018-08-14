@@ -3,8 +3,9 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-            <asp:Label ID="time" runat="server"></asp:Label>
-
+            <h1>
+            <asp:Label CssClass="label label-default" ID="time" runat="server">0</asp:Label>
+            </h1>
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />

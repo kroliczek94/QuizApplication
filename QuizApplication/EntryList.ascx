@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EntryList.ascx.cs" Inherits="QuizApplication.EntryList" %>
+<asp:GridView ID="GridView1" runat="server" CssClass="table table-hover"></asp:GridView>

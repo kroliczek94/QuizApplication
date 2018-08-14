@@ -10,34 +10,6 @@ namespace QuizApplication
     public partial class _Default : Page
     {
 
-        private void MyEventHandlerFunction_QuizFailed(object sender, EventArgs e)
-        {
-            Wizard1.ActiveStepIndex = 3;
-        }
 
-        protected void StartQuizButton_Click(object sender, EventArgs e)
-        {
-            timerASP.Start();
-            Wizard1.ActiveStepIndex++;
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            this.question.QuizFailedEvent += new EventHandler(MyEventHandlerFunction_QuizFailed);
-            this.question.FinalQuestionEvent += new EventHandler(MyEventHandlerFunction_FinalQuestion);
-        }
-
-        private void MyEventHandlerFunction_FinalQuestion(object sender, EventArgs e)
-        {
-            timerASP.Stop();
-            Wizard1.ActiveStepIndex = 2;
-        }
-
-        protected void Abort_Click(object sender, EventArgs e)
-        {
-            timerASP.Stop();
-            Wizard1.ActiveStepIndex = 3;
-
-        }
     }
 }
