@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Quiz.aspx.cs" Inherits="QuizApplication.Quiz" %>
+﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Quiz.aspx.cs" Debug="true" Inherits="QuizApplication.Quiz" %>
 
 <%@ Register TagPrefix="uc" TagName="QuestionControl" Src="~/QuestionControl.ascx" %>
 <%@ Register TagPrefix="uc2" TagName="EntryList" Src="~/EntryList.ascx" %>
