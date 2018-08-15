@@ -1,4 +1,5 @@
 ﻿using QuizApplication.DAO;
+using QuizApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,18 +105,7 @@ namespace QuizApplication
         private void AfterFinalQuestion()
         {
             timerASP.Stop();
-            using (var db = new Model1())
-            {
-                var histEntry = new HistoryEntry()
-                {
-                    UserId = Environment.UserName,
-                    Score = 5,
-                    Time = timerASP.Seconds,
-                    Ended= DateTime.Now
-                };
-                db.Entries.Add(histEntry);
-                db.SaveChanges();
-            }
+            QuestionDAO.SaveUserRecord(timerASP.Seconds);
              FinalQuestionEvent?.Invoke(this, EventArgs.Empty);
         }
 

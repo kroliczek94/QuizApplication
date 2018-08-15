@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,11 +8,11 @@ namespace QuizApplication.DAO
 {
     public class QuestionDAO
     {
-        private static Model1 dbModel1 = new Model1();
+        private static ApplicationDbContext dbContext = new ApplicationDbContext();
         public static List<Question> GetQuestions()
         {
 
-            var query = from b in dbModel1.Questions
+            var query = from b in dbContext.Questions
                         orderby b.ID
                         select b;
 
@@ -20,16 +21,30 @@ namespace QuizApplication.DAO
 
         public static IEnumerable<HistoryEntry> GetHistoryEntries(int n)
         {
-            var query = from b in dbModel1.Entries
+            var query = from b in dbContext.Entries
                         orderby b.Score, b.Time
                         select b;
             return query.AsEnumerable().Take(n);
-           
+
+        }
+
+        public static void SaveUserRecord(int time)
+        {
+            var histEntry = new HistoryEntry()
+            {
+                UserId = HttpContext.Current.User.Identity.Name,
+                Time = time,
+                Ended = DateTime.Now
+            };
+
+            dbContext.Entries.Add(histEntry);
+            dbContext.SaveChanges();
+
         }
 
         public static IEnumerable<HistoryEntry> GetHistoryEntries()
         {
-            return GetHistoryEntries(dbModel1.Entries.Count());
+            return GetHistoryEntries(dbContext.Entries.Count());
         }
     }
 }

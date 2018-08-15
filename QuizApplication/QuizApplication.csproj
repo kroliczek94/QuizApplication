@@ -418,6 +418,18 @@
     <Compile Include="Migrations\201808122056133_ModificationQuestion.Designer.cs">
       <DependentUpon>201808122056133_ModificationQuestion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808152053388_Test2.cs" />
+    <Compile Include="Migrations\201808152053388_Test2.Designer.cs">
+      <DependentUpon>201808152053388_Test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808152112504_xD.cs" />
+    <Compile Include="Migrations\201808152112504_xD.Designer.cs">
+      <DependentUpon>201808152112504_xD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808152117069_xD1.cs" />
+    <Compile Include="Migrations\201808152117069_xD1.Designer.cs">
+      <DependentUpon>201808152117069_xD1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -493,6 +505,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808122056133_ModificationQuestion.resx">
       <DependentUpon>201808122056133_ModificationQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808152053388_Test2.resx">
+      <DependentUpon>201808152053388_Test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808152112504_xD.resx">
+      <DependentUpon>201808152112504_xD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808152117069_xD1.resx">
+      <DependentUpon>201808152117069_xD1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

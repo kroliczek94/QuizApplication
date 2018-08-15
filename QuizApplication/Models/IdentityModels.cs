@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -32,7 +33,12 @@ namespace QuizApplication.Models
         public ApplicationDbContext()
             : base("Website", throwIfV1Schema: false)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, QuizApplication.Migrations.Configuration>());
+
         }
+
+        public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<HistoryEntry> Entries { get; set; }
 
         public static ApplicationDbContext Create()
         {
